@@ -15,17 +15,11 @@ const images = [
 
 const gallerEl = document.querySelector('.gallery');
 
-const makeGallery = ({ url, alt }) => {
-    const imageItem = document.createElement('li');
-    imageItem.style.display = 'flex';
-    imageItem.style.justifyContent = 'center';
+const imagesItem = images
+    .map(
+        ({ url, alt }) =>
+            `<li style='display: grid' ><image src='${url}' alt='${alt}'/></li>`
+    )
+    .join('');
 
-    const imageEl = `<image src='${url}' alt='${alt}'/>`;
-
-    imageItem.insertAdjacentHTML('beforeend', imageEl);
-    return imageItem;
-};
-
-const elements = images.map(makeGallery);
-
-gallerEl.append(...elements);
+gallerEl.insertAdjacentHTML('beforeend', imagesItem);
